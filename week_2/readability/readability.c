@@ -12,7 +12,7 @@ int main(void)
 
     // Count the number of letters, words, and sentences in the text
     int letters = 0;
-    int words = 0;
+    int words = 1;
     int sentences = 0;
     for (int i = 0, n = strlen(text); i < n; i++)
     {
@@ -21,22 +21,24 @@ int main(void)
         {
             letters++;
         }
-        // Words are counted as any sequence of characters separated by spaces assuming the previous character is a letter
-        else if (isspace(text[i]) && isalpha(text[i - 1]))
+        // Words are counted as any sequence of characters separated by spaces assuming the previous
+        // character is a letter
+        else if (isspace(text[i]))
         {
             words++;
         }
-        // Sentences are counted as any sequence of characters ending in a period, exclamation point, or question mark assuming the previous character is a letter
+        // Sentences are counted as any sequence of characters ending in a period, exclamation
+        // point, or question mark assuming the previous character is a letter
         else if ((text[i] == '.' || text[i] == '!' || text[i] == '?') && isalpha(text[i - 1]))
         {
-            words++;
             sentences++;
         }
     }
     // Use the Coleman-Liau index to determine the grade level readability of the text
-    //  index = 0.0588 * L - 0.296 * S - 15.8 where L is the average number of letters per 100 words in the text and S is the average number of sentences per 100 words in the text
-    float L = (float) letters / words * 100;
-    float S = (float) sentences / words * 100;
+    //  index = 0.0588 * L - 0.296 * S - 15.8 where L is the average number of letters per 100 words
+    //  in the text and S is the average number of sentences per 100 words in the text
+    float L = (float)letters / words * 100;
+    float S = (float)sentences / words * 100;
     int index = round(0.0588 * L - 0.296 * S - 15.8);
 
     //  Output "Grade X" where X is the grade level

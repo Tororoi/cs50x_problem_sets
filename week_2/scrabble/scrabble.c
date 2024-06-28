@@ -42,8 +42,11 @@ int compute_score(string word)
     // iterate over each character in the word
     for (int i = 0, n = strlen(word); i < n; i++)
     {
-        // calculate the score of the letter and add it to the total score
-        score += POINTS[toupper(word[i]) - 'A'];
+        if (isalpha(word[i]))
+        {
+            // calculate the score of the letter and add it to the total score
+            score += POINTS[toupper(word[i]) - 'A'];
+        }
     }
     // return the total score
     return score;
