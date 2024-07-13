@@ -98,14 +98,22 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i] == name)
+        {
+            ranks[rank] = name;
+            return true;
+        }
+    }
+
     return false;
 }
 
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // TODO
+    // loop through ranks and set preferences[ranks[i]][ranks[i++...]]++
     return;
 }
 
